@@ -17,6 +17,16 @@
                     <Icon type="ios-lock-outline" slot="prepend"></Icon>
                   </Input>
                 </Form-item>
+                <Row :gutter="25">
+                  <Col span="12">
+                  <Form-item prop="verifyCodeActual">
+                    <Input v-model="formValidate.verifyCodeActual" placeholder="请输入验证码" />
+                  </Form-item>
+                  </Col>
+                  <Col span="12">
+                    <img alt="点击更换" title="点击更换" @click="refresh()" v-bind:src="imageSrc" />
+                  </Col>
+                </Row>
                 <Row>
                   <Col span="12">
                   <Checkbox-group v-model="formValidate.remember">
@@ -24,7 +34,7 @@
                   </Checkbox-group>
                   </Col>
                   <Col span="12">
-                  <a style="float:right" @click="toRegister">新用户注册</a>
+                    <a style="float:right" @click="toRegister">新用户注册</a>
                   </Col>
                 </Row>
               </Form>
@@ -39,7 +49,7 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 export default {
   name: 'login',
   data () {
@@ -50,6 +60,7 @@ export default {
         name: '',
         password: ''
       },
+      imageSrc: '/kaptcha',
       ruleValidate: {
         name: [
           {required: true, message: '姓名不能为空', trigger: 'blur'}
@@ -69,7 +80,8 @@ export default {
             url: '/user/login',
             data: {
               username: this.$data.formValidate.name,
-              password: this.$data.formValidate.password
+              password: this.$data.formValidate.password,
+              verifyCodeActual: this.$data.formValidate.verifyCodeActual
             }
           })
         }
@@ -77,6 +89,10 @@ export default {
     },
     toRegister () {
       this.$router.push('/Hello')
+    },
+    refresh () {
+      console.log(this.imageSrc)
+      this.imageSrc = '/kaptcha?'+Math.random()
     }
   }
 }
