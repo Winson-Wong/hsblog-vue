@@ -8,38 +8,38 @@
               </h2>
               <Form ref="formValidate" method="POST" action="/user/login" :model="formValidate" :rules="ruleValidate">
                 <Form-item prop="name">
-                  <Input v-model="formValidate.name" placeholder="请输入姓名">
+                  <i-input index=1 v-model="formValidate.name" placeholder="请输入姓名">
                     <Icon type="ios-person-outline" slot="prepend"></Icon>
-                  </Input>
+                  </i-input>
                 </Form-item>
                 <Form-item prop="password">
-                  <Input v-model="formValidate.password" placeholder="请输入密码">
+                  <i-input index=2 v-model="formValidate.password" placeholder="请输入密码">
                     <Icon type="ios-lock-outline" slot="prepend"></Icon>
-                  </Input>
+                  </i-input>
                 </Form-item>
                 <Row :gutter="25">
-                  <Col span="12">
+                  <i-col span="12">
                   <Form-item prop="verifyCodeActual">
-                    <Input v-model="formValidate.verifyCodeActual" placeholder="请输入验证码" />
+                    <i-input index=3 v-model="formValidate.verifyCodeActual" placeholder="请输入验证码" />
                   </Form-item>
-                  </Col>
-                  <Col span="12">
+                  </i-col>
+                  <i-col span="12">
                     <img alt="点击更换" title="点击更换" @click="refresh()" v-bind:src="imageSrc" />
-                  </Col>
+                  </i-col>
                 </Row>
                 <Row>
-                  <Col span="12">
+                  <i-col span="12">
                   <Checkbox-group v-model="formValidate.remember">
                     <Checkbox label="记住我"></Checkbox>
                   </Checkbox-group>
-                  </Col>
-                  <Col span="12">
+                  </i-col>
+                  <i-col span="12">
                     <a style="float:right" @click="toRegister">新用户注册</a>
-                  </Col>
+                  </i-col>
                 </Row>
               </Form>
               <div slot="footer">
-                <Button type="primary" size="large" long :loading="modal_loading" @click="handleSubmit('formValidate')">登录
+                <Button index=4 type="primary" size="large" long :loading="modal_loading" v-on:on-enter="enterFocus()"  @click="handleSubmit('formValidate')">登录
                 </Button>
                 <small style="text-align: center;display:block" class="subText">©copyright by winson</small>
               </div>
@@ -82,7 +82,8 @@ export default {
               username: this.$data.formValidate.name,
               password: this.$data.formValidate.password,
               verifyCodeActual: this.$data.formValidate.verifyCodeActual
-            }
+            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'}
           })
         }
       })
@@ -92,7 +93,12 @@ export default {
     },
     refresh () {
       console.log(this.imageSrc)
-      this.imageSrc = '/kaptcha?'+Math.random()
+      this.imageSrc = '/kaptcha?' + Math.random()
+    },
+    enterFocus () {
+      const DOM = event.target
+      const nextDOM = DOM.nextElementSibling
+      nextDOM.focus()
     }
   }
 }

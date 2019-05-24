@@ -3,7 +3,7 @@
         <Row class="bg">
             <Modal class="register-modal" v-model="registerModal" width="600" :closable="false" :mask-closable="false">
               <h2 class="tittle">
-				<Button type="Text" :loading="modal_loading" @click=""><Icon type="chevron-left"></Icon>返回</Button>
+				<Button type="Text" :loading="modal_loading" ><Icon type="chevron-left"></Icon>返回</Button>
                 <img class="cover" :src="require('@/assets/registerlogo.png')" alt="" height="50">
               </h2>
               <Form ref="formValidate" method="POST" action="/user/register" :model="formValidate" :rules="ruleValidate" :label-width="90">
@@ -30,7 +30,7 @@
               <div slot="footer">
 				<div style="margin: 0 auto;display: block;width: 350px">
 					<Button type="success" :loading="modal_loading" @click="handleSubmit('formValidate')" style="width: 150px">注册</Button>
-					<Button type="primary" :loading="modal_loading" @click="" style="width: 150px">重置</Button>
+					<Button type="primary" :loading="modal_loading"  style="width: 150px">重置</Button>
 				</div>
                 <small style="text-align: center;display:block" class="subText">©copyright by HSblog</small>
               </div>
