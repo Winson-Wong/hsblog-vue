@@ -77,8 +77,8 @@ export default {
         if (valid) {
           this.$ajax({
             method: 'post',
-            url: '/user/login',
-            data: {
+            url: 'http://localhost:8088/user/login',
+            params: {
               username: this.$data.formValidate.name,
               password: this.$data.formValidate.password,
               verifyCodeActual: this.$data.formValidate.verifyCodeActual
@@ -93,7 +93,7 @@ export default {
     },
     refresh () {
       console.log(this.imageSrc)
-      this.imageSrc = '/kaptcha?' + Math.random()
+      this.imageSrc = 'http://localhost:8088/kaptcha?' + Math.random()
     },
     enterFocus () {
       const DOM = event.target
