@@ -89,7 +89,7 @@ export default {
       })
     },
     toRegister () {
-      this.$router.push('/Hello')
+      this.$router.push('/Register')
     },
     refresh () {
       console.log(this.imageSrc)
