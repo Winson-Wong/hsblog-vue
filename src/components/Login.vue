@@ -83,7 +83,7 @@ export default {
               password: this.$data.formValidate.password,
               verifyCodeActual: this.$data.formValidate.verifyCodeActual
             },
-            headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'}
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
           })
         }
       })
